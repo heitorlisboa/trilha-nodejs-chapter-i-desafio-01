@@ -118,7 +118,11 @@ app.delete(
   (request, response) => {
     const { user, todo } = request;
 
-    user.todos.splice(todo, 1);
+    const todoIndex = user.todos.findIndex(
+      (currentTodo) => currentTodo === todo
+    );
+
+    user.todos.splice(todoIndex, 1);
 
     return response.status(204).send();
   }
